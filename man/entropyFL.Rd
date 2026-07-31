@@ -8,103 +8,110 @@ entropyFL(
   loadings_matrix,
   base = 2,
   normalized = TRUE,
-  scaled = FALSE,
-  bounded = TRUE,
-  nd = 3
+  type = c("expl", "conf"),
+  target = NULL
 )
 }
 \arguments{
-\item{loadings_matrix}{A numeric matrix or data frame of factor loadings, where rows represent items and columns represent factors.}
+\item{loadings_matrix}{A numeric matrix of factor loadings (rows = items, columns = factors).}
 
-\item{base}{The logarithmic base used to compute entropy. Default is \code{2}, corresponding to entropy in bits.}
+\item{base}{Logarithmic base (default \code{2}, entropy in bits).}
 
-\item{normalized}{Logical. If \code{TRUE} (default), entropy values are normalized to range from 0 to 1 by dividing by \eqn{\log_b(k)} or \eqn{\log_b(n)}.}
+\item{normalized}{Logical. If \code{TRUE}, entropy is divided by the maximum
+possible entropy: for items \eqn{\log(k)} (or \eqn{\log(2)} in conf mode),
+for factors \eqn{\log(n)} (or \eqn{\log(2)} in conf mode),
+and for global as described above. Default is \code{TRUE}.}
 
-\item{scaled}{Logical. If \code{TRUE}, returns the scaled entropy index and the theoretical minimum entropy as proposed by Beisel & Moreteau (1997). Default is \code{FALSE}.}
+\item{type}{Character. Either \code{"expl"} (exploratory, default) or \code{"conf"} (confirmatory).}
 
-\item{bounded}{Logical. If \code{TRUE} (default), forces scaled entropy values to remain within the 0 to 1 range by truncating negative or >1 values.}
-
-\item{nd}{Integer. Number of decimal places to round the results. Default is \code{3}. Use \code{NULL} for no rounding.}
+\item{target}{Integer vector of length \code{nrow(loadings_matrix)}. Required when
+\code{type = "conf"}. Each entry indicates the factor (column index) that
+the item is expected to load on. Values must be between 1 and number of factors.}
 }
 \value{
-A list with:
+A list of data frames:
 \describe{
-\item{\code{Hnormalized}}{A list with entropy by item, factor, and total.}
-\item{\code{Hscaled}}{A list with \code{Hmin.items}, \code{Hscaled.items}, \code{Hmin.factors}, \code{Hscaled.factors}, and \code{Hscaled.total} (if \code{scaled = TRUE}).}
+\item{\code{item}}{Data frame with columns \code{item} (names) and \code{entropy}.}
+\item{\code{factor}}{Data frame with columns \code{factor} (names) and \code{entropy}.}
+\item{\code{total}}{Data frame with a single row: \code{metric = "global"} and \code{entropy}.}
 }
-
-#' \strong{Interpretation:}
-\itemize{
-\item Values near 0 indicate high factorial simplicity (loadings concentrated on a single factor).
-\item Values near 1 suggest factorial complexity or ambiguity (dispersed loadings across factors).
-\item \code{Hnormalized} expresses entropy as a proportion of the maximum possible entropy.
-\item \code{Hscaled} expresses entropy relative to its theoretical minimum and maximum, allowing finer differentiation across contexts.
-\item The index can be used to compare different rotation methods, number of factors, or item structures.
-}
-
-Although no formal cutoff exists, entropy values below 0.20 typically reflect strong factorial simplicity,
-while values near or above 0.80 may indicate multidimensionality or poor simple structure.
-Interpretation should always be contextualized using additional indices, visual inspection of loadings, and substantive theory.
+If \code{normalized = FALSE}, the raw entropy values are returned; otherwise,
+normalized values (0–1) are returned.
 }
 \description{
-Computes entropy-based indices to quantify the factorial simplicity or complexity of an Exploratory Factor Analysis (EFA) solution.
-Entropy is computed at three levels: by item, by factor, and globally. Two types of entropy measures are available: normalized and scaled.
+Computes entropy‑based indices to quantify factorial simplicity or complexity
+from a matrix of factor loadings (or network loadings from EGA).
+Two modes are available: exploratory (\code{type = "expl"}) and confirmatory
+(\code{type = "conf"}). In confirmatory mode, a target vector must be provided
+indicating the expected factor for each item; entropy is then computed on a
+binary distribution (target vs. non‑target variance).
+
+The function returns entropy values per item, per factor, and a global index.
+Entropy can be normalized (divided by the maximum possible entropy) to
+obtain values between 0 and 1.
+
+In exploratory mode, the global entropy is calculated on the entire matrix of
+squared loadings, normalized by \eqn{\log(n \cdot k)}.
+In confirmatory mode, the global entropy is computed as the average of two
+components: (1) the entropy of the squared loadings of target items within
+each factor (how concentrated are the expected loadings), and (2) the entropy
+of the squared loadings of non‑target items within each factor (how dispersed
+are the cross‑loadings). This provides a measure of overall factorial clarity
+that aligns with the confirmatory logic.
 }
 \details{
-The entropy index is based on the squared factor loadings (\eqn{\lambda_{ij}^2}), interpreted as the proportion of shared variance between item \eqn{i} and factor \eqn{j} (Shannon, 1948).
+In exploratory mode, entropy for an item is computed from the normalized squared
+loadings across all factors. In confirmatory mode, the squared loadings are
+collapsed into two categories: the target factor and all others combined.
+Similarly for factors: target items vs. non‑target items.
 
-\strong{1. Normalized Entropy:}
+The global entropy in confirmatory mode is calculated as:
+\enumerate{
+\item For each factor, compute the entropy of the distribution of squared
+loadings among its target items (if any). Average these values across factors
+to obtain \eqn{H_{target}}.
+\item For each factor, compute the entropy of the distribution of squared
+loadings among its non‑target items (if any). Average these values across factors
+to obtain \eqn{H_{non-target}}.
+\item The total confirmatory entropy is the average of the two: \eqn{H_{total} = (H_{target} + H_{non-target}) / 2}.
+}
+This measure reflects how well the loading matrix conforms to the expected
+structure: low values indicate that target items have concentrated loadings
+and non‑target items have low or dispersed cross‑loadings (good fit), while
+high values suggest ambiguity or poor discrimination.
+
+\strong{Interpretation:}
 \itemize{
-\item For each item \eqn{i}, define the pseudo-proportions:
-\deqn{p_{ij} = \frac{\lambda_{ij}^2}{\sum_{j=1}^k \lambda_{ij}^2}}
-\item Then compute Shannon entropy:
-\deqn{H_i = - \sum_{j=1}^k p_{ij} \log_b(p_{ij})}
-\item If \code{normalized = TRUE}, divide by \eqn{\log_b(k)} to constrain values to 0 to 1 range.
+\item \strong{Item entropy (\code{H_i})}: Low values (near 0) indicate that the item loads predominantly on a single factor (simple structure). High values (near 1) suggest cross‑loadings or factorial complexity.
+\item \strong{Factor entropy (\code{H_f})}: Low values indicate that the factor is defined by few items (specific factor). High values suggest that the factor is broadly dispersed across many items (general or diffuse factor).
+\item \strong{Global entropy (\code{H_total})}: In exploratory mode, reflects the overall dispersion of variance across all matrix cells. In confirmatory mode, it reflects the clarity of the target structure, with lower values indicating better alignment with the expected pattern.
 }
 
-The same logic applies for factors (across items), replacing \eqn{p_{ij}} with:
-\deqn{q_{ij} = \frac{\lambda_{ij}^2}{\sum_{i=1}^n \lambda_{ij}^2}}
-
-\strong{2. Global Entropy:}
-Entropy can also be calculated for the full loading matrix as a whole:
-\deqn{p_{ij} = \frac{\lambda_{ij}^2}{\sum_{i,j} \lambda_{ij}^2}}
-\deqn{H = - \sum_{i,j} p_{ij} \log_b(p_{ij})}
-and normalized by \eqn{\log_b(n \cdot k)}.
-
-\strong{3. Scaled Entropy (Beisel & Moreteau, 1997):}
-When \code{scaled = TRUE}, the function returns:
-\itemize{
-\item \eqn{H_{min}}: A theoretical lower bound for entropy when one factor dominates:
-\deqn{H_{min} = - [p_{max} \log_b(p_{max}) + (1 - p_{max}) \log_b((1 - p_{max}) / (k - 1))]}
-\item \eqn{H_{scaled}}: A scaled measure between \eqn{H_{min}} and \eqn{H_{max}}:
-\deqn{H_{scaled} = \frac{H - H_{min}}{H_{max} - H_{min}}}
-}
-
-This calculation is applied both to items and to factors. For factors, \eqn{k} is replaced by \eqn{n} (number of items).
-
-\strong{4. Argument \code{bounded}:}
-Scaled entropy can occasionally produce values outside 0 to 1 range if entropy is below the theoretical minimum.
-If \code{bounded = TRUE}, the function truncates those values to stay within 0 to 1 range for interpretive clarity.
+When applied to network loadings (NT) from \strong{Exploratory Graph Analysis (EGA)},
+this index quantifies the clarity of node–community assignment. Low entropy
+indicates that nodes load predominantly on a single community (simple structure),
+high entropy suggests diffuse or ambiguous membership, complementing the
+\emph{Total Entropy Fit Index (TEFI)} for global fit assessment.
 }
 \examples{
-# Example: items with different factorial complexity
-\donttest{loadings <- matrix(c(
-  0.7, 0.0, 0.01,
-  0.1, 0.2, 0.15,
-  0.4, 0.8, 0.2,
-  0.4, 0.4, 0.4
-), nrow = 4, byrow = TRUE)
+\donttest{
+# Exploratory mode
+loadings_expl <- matrix(c(0.7,0.1,0.1, 0.2,0.8,0.1, 0.3,0.3,0.9), nrow=3, byrow=TRUE)
+rownames(loadings_expl) <- paste0("Item", 1:3)
+colnames(loadings_expl) <- paste0("F", 1:3)
 
-entropyFL(loadings, normalized = TRUE, scaled = TRUE, bounded = TRUE)
+entropyFL(loadings_expl, type = "expl", normalized = TRUE)
+
+# Confirmatory mode
+loadings_conf <- loadings_expl
+target <- c(1, 2, 3)
+entropyFL(loadings_conf, type = "conf", target = target, normalized = FALSE)
 }
 
 }
 \references{
-Shannon, C. E. (1948). A mathematical theory of communication. \emph{Bell System Technical Journal}, 27(3), 379--423. \doi{10.1002/j.1538-7305.1948.tb00917.x}
-
-Beisel, J. N., & Moreteau, J.-C. (1997). A new method to estimate the lower bound of the Shannon-Wiener index of diversity. \emph{Ecological Modelling}, 99(1), 99-105.
-
-Hofmann, R. J. (1978). Complexity and simplicity as objective indices descriptive of factor solutions. \emph{Multivariate Behavioral Research}, 13(2), 247-250.
-
-Lorenzo-Seva, U. (2003). A factor simplicity index. \emph{Psychometrika}, 68(1), 49-60. \doi{10.1007/BF02296652}
+Shannon, C. E. (1948). A mathematical theory of communication. \emph{Bell System Technical Journal}, 27(3), 379–423.
+Hofmann, R. J. (1978). Complexity and simplicity as objective indices descriptive of factor solutions. \emph{Multivariate Behavioral Research}, 13(2), 247–250.
+Lorenzo-Seva, U. (2003). A factor simplicity index. \emph{Psychometrika}, 68(1), 49–60.
+McCammon, R. B. (1966). Minimum entropy criterion for factor analysis. \emph{Journal of the ACM}, 13(2), 247–250.
 }

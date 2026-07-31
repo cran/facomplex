@@ -406,7 +406,7 @@ matrix.</p>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                                         <span class="at">std.ov =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>We examine the model fit and standardized solution:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(INV.esem.fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; lavaan 0.6-21 ended normally after 32 iterations</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; lavaan 0.7-2 ended normally after 32 iterations</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   Estimator                                        ULS</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
@@ -463,62 +463,72 @@ matrix.</p>
 <span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a><span class="co">#&gt;   SRMR                                           0.054       0.054</span></span>
 <span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
+<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a><span class="co">#&gt; Goodness of Fit Index:</span></span>
 <span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a><span class="co">#&gt;   Standard errors                           Robust.sem</span></span>
-<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a><span class="co">#&gt;   Information                                 Expected</span></span>
-<span id="cb5-63"><a href="#cb5-63" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model        Unstructured</span></span>
-<span id="cb5-64"><a href="#cb5-64" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-65"><a href="#cb5-65" tabindex="-1"></a><span class="co">#&gt; Latent Variables:</span></span>
-<span id="cb5-66"><a href="#cb5-66" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
-<span id="cb5-67"><a href="#cb5-67" tabindex="-1"></a><span class="co">#&gt;   f1 =~ efa1                                                            </span></span>
-<span id="cb5-68"><a href="#cb5-68" tabindex="-1"></a><span class="co">#&gt;     INV1              0.648    0.066    9.771    0.000    0.648    0.652</span></span>
-<span id="cb5-69"><a href="#cb5-69" tabindex="-1"></a><span class="co">#&gt;     INV4              0.640    0.062   10.287    0.000    0.640    0.652</span></span>
-<span id="cb5-70"><a href="#cb5-70" tabindex="-1"></a><span class="co">#&gt;     INV5              0.534    0.062    8.599    0.000    0.534    0.615</span></span>
-<span id="cb5-71"><a href="#cb5-71" tabindex="-1"></a><span class="co">#&gt;     INV7              0.656    0.062   10.532    0.000    0.656    0.680</span></span>
-<span id="cb5-72"><a href="#cb5-72" tabindex="-1"></a><span class="co">#&gt;     INV11             0.522    0.061    8.508    0.000    0.522    0.593</span></span>
-<span id="cb5-73"><a href="#cb5-73" tabindex="-1"></a><span class="co">#&gt;     INV12             0.385    0.063    6.081    0.000    0.385    0.415</span></span>
-<span id="cb5-74"><a href="#cb5-74" tabindex="-1"></a><span class="co">#&gt;     INV3              0.033    0.055    0.587    0.557    0.033    0.035</span></span>
-<span id="cb5-75"><a href="#cb5-75" tabindex="-1"></a><span class="co">#&gt;     INV6              0.183    0.067    2.710    0.007    0.183    0.187</span></span>
-<span id="cb5-76"><a href="#cb5-76" tabindex="-1"></a><span class="co">#&gt;     INV8              0.087    0.052    1.666    0.096    0.087    0.092</span></span>
-<span id="cb5-77"><a href="#cb5-77" tabindex="-1"></a><span class="co">#&gt;     INV9              0.091    0.056    1.629    0.103    0.091    0.093</span></span>
-<span id="cb5-78"><a href="#cb5-78" tabindex="-1"></a><span class="co">#&gt;     INV13            -0.110    0.051   -2.139    0.032   -0.110   -0.106</span></span>
-<span id="cb5-79"><a href="#cb5-79" tabindex="-1"></a><span class="co">#&gt;     INV14            -0.101    0.064   -1.570    0.117   -0.101   -0.090</span></span>
-<span id="cb5-80"><a href="#cb5-80" tabindex="-1"></a><span class="co">#&gt;   f2 =~ efa1                                                            </span></span>
-<span id="cb5-81"><a href="#cb5-81" tabindex="-1"></a><span class="co">#&gt;     INV1             -0.037    0.062   -0.592    0.554   -0.037   -0.037</span></span>
-<span id="cb5-82"><a href="#cb5-82" tabindex="-1"></a><span class="co">#&gt;     INV4             -0.108    0.052   -2.088    0.037   -0.108   -0.110</span></span>
-<span id="cb5-83"><a href="#cb5-83" tabindex="-1"></a><span class="co">#&gt;     INV5             -0.036    0.058   -0.621    0.535   -0.036   -0.042</span></span>
-<span id="cb5-84"><a href="#cb5-84" tabindex="-1"></a><span class="co">#&gt;     INV7              0.002    0.052    0.048    0.962    0.002    0.003</span></span>
-<span id="cb5-85"><a href="#cb5-85" tabindex="-1"></a><span class="co">#&gt;     INV11             0.050    0.055    0.901    0.368    0.050    0.056</span></span>
-<span id="cb5-86"><a href="#cb5-86" tabindex="-1"></a><span class="co">#&gt;     INV12             0.289    0.053    5.418    0.000    0.289    0.311</span></span>
-<span id="cb5-87"><a href="#cb5-87" tabindex="-1"></a><span class="co">#&gt;     INV3              0.405    0.056    7.171    0.000    0.405    0.438</span></span>
-<span id="cb5-88"><a href="#cb5-88" tabindex="-1"></a><span class="co">#&gt;     INV6              0.295    0.063    4.696    0.000    0.295    0.302</span></span>
-<span id="cb5-89"><a href="#cb5-89" tabindex="-1"></a><span class="co">#&gt;     INV8              0.573    0.062    9.249    0.000    0.573    0.606</span></span>
-<span id="cb5-90"><a href="#cb5-90" tabindex="-1"></a><span class="co">#&gt;     INV9              0.590    0.061    9.630    0.000    0.590    0.604</span></span>
-<span id="cb5-91"><a href="#cb5-91" tabindex="-1"></a><span class="co">#&gt;     INV13             0.765    0.056   13.728    0.000    0.765    0.737</span></span>
-<span id="cb5-92"><a href="#cb5-92" tabindex="-1"></a><span class="co">#&gt;     INV14             0.473    0.072    6.618    0.000    0.473    0.421</span></span>
-<span id="cb5-93"><a href="#cb5-93" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-94"><a href="#cb5-94" tabindex="-1"></a><span class="co">#&gt; Covariances:</span></span>
-<span id="cb5-95"><a href="#cb5-95" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
-<span id="cb5-96"><a href="#cb5-96" tabindex="-1"></a><span class="co">#&gt;   f1 ~~                                                                 </span></span>
-<span id="cb5-97"><a href="#cb5-97" tabindex="-1"></a><span class="co">#&gt;     f2                0.595    0.051   11.763    0.000    0.595    0.595</span></span>
-<span id="cb5-98"><a href="#cb5-98" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-99"><a href="#cb5-99" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
-<span id="cb5-100"><a href="#cb5-100" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
-<span id="cb5-101"><a href="#cb5-101" tabindex="-1"></a><span class="co">#&gt;    .INV1              0.595    0.054   10.964    0.000    0.595    0.602</span></span>
-<span id="cb5-102"><a href="#cb5-102" tabindex="-1"></a><span class="co">#&gt;    .INV4              0.623    0.056   11.060    0.000    0.623    0.647</span></span>
-<span id="cb5-103"><a href="#cb5-103" tabindex="-1"></a><span class="co">#&gt;    .INV5              0.491    0.053    9.318    0.000    0.491    0.651</span></span>
-<span id="cb5-104"><a href="#cb5-104" tabindex="-1"></a><span class="co">#&gt;    .INV7              0.499    0.046   10.747    0.000    0.499    0.535</span></span>
-<span id="cb5-105"><a href="#cb5-105" tabindex="-1"></a><span class="co">#&gt;    .INV11             0.468    0.042   11.146    0.000    0.468    0.605</span></span>
-<span id="cb5-106"><a href="#cb5-106" tabindex="-1"></a><span class="co">#&gt;    .INV12             0.497    0.040   12.481    0.000    0.497    0.577</span></span>
-<span id="cb5-107"><a href="#cb5-107" tabindex="-1"></a><span class="co">#&gt;    .INV3              0.674    0.053   12.759    0.000    0.674    0.789</span></span>
-<span id="cb5-108"><a href="#cb5-108" tabindex="-1"></a><span class="co">#&gt;    .INV6              0.765    0.058   13.197    0.000    0.765    0.806</span></span>
-<span id="cb5-109"><a href="#cb5-109" tabindex="-1"></a><span class="co">#&gt;    .INV8              0.498    0.047   10.699    0.000    0.498    0.557</span></span>
-<span id="cb5-110"><a href="#cb5-110" tabindex="-1"></a><span class="co">#&gt;    .INV9              0.533    0.042   12.846    0.000    0.533    0.559</span></span>
-<span id="cb5-111"><a href="#cb5-111" tabindex="-1"></a><span class="co">#&gt;    .INV13             0.580    0.058    9.990    0.000    0.580    0.538</span></span>
-<span id="cb5-112"><a href="#cb5-112" tabindex="-1"></a><span class="co">#&gt;    .INV14             1.088    0.072   15.061    0.000    1.088    0.860</span></span>
-<span id="cb5-113"><a href="#cb5-113" tabindex="-1"></a><span class="co">#&gt;     f1                1.000                               1.000    1.000</span></span>
-<span id="cb5-114"><a href="#cb5-114" tabindex="-1"></a><span class="co">#&gt;     f2                1.000                               1.000    1.000</span></span></code></pre></div>
+<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a><span class="co">#&gt;   Goodness of Fit Index (GFI)                    0.932            </span></span>
+<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a><span class="co">#&gt;   90 Percent confidence interval - lower         0.918            </span></span>
+<span id="cb5-63"><a href="#cb5-63" tabindex="-1"></a><span class="co">#&gt;   90 Percent confidence interval - upper         0.945            </span></span>
+<span id="cb5-64"><a href="#cb5-64" tabindex="-1"></a><span class="co">#&gt;                                                                   </span></span>
+<span id="cb5-65"><a href="#cb5-65" tabindex="-1"></a><span class="co">#&gt;   Robust GFI                                                 0.928</span></span>
+<span id="cb5-66"><a href="#cb5-66" tabindex="-1"></a><span class="co">#&gt;   90 Percent confidence interval - lower                     0.915</span></span>
+<span id="cb5-67"><a href="#cb5-67" tabindex="-1"></a><span class="co">#&gt;   90 Percent confidence interval - upper                     0.940</span></span>
+<span id="cb5-68"><a href="#cb5-68" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-69"><a href="#cb5-69" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
+<span id="cb5-70"><a href="#cb5-70" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-71"><a href="#cb5-71" tabindex="-1"></a><span class="co">#&gt;   Standard errors                           Robust.sem</span></span>
+<span id="cb5-72"><a href="#cb5-72" tabindex="-1"></a><span class="co">#&gt;   Information                                 Expected</span></span>
+<span id="cb5-73"><a href="#cb5-73" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model        Unstructured</span></span>
+<span id="cb5-74"><a href="#cb5-74" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-75"><a href="#cb5-75" tabindex="-1"></a><span class="co">#&gt; Latent Variables:</span></span>
+<span id="cb5-76"><a href="#cb5-76" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
+<span id="cb5-77"><a href="#cb5-77" tabindex="-1"></a><span class="co">#&gt;   f1 =~ efa1                                                            </span></span>
+<span id="cb5-78"><a href="#cb5-78" tabindex="-1"></a><span class="co">#&gt;     INV1              0.648    0.066    9.771    0.000    0.648    0.652</span></span>
+<span id="cb5-79"><a href="#cb5-79" tabindex="-1"></a><span class="co">#&gt;     INV4              0.640    0.062   10.287    0.000    0.640    0.652</span></span>
+<span id="cb5-80"><a href="#cb5-80" tabindex="-1"></a><span class="co">#&gt;     INV5              0.534    0.062    8.599    0.000    0.534    0.615</span></span>
+<span id="cb5-81"><a href="#cb5-81" tabindex="-1"></a><span class="co">#&gt;     INV7              0.656    0.062   10.532    0.000    0.656    0.680</span></span>
+<span id="cb5-82"><a href="#cb5-82" tabindex="-1"></a><span class="co">#&gt;     INV11             0.522    0.061    8.508    0.000    0.522    0.593</span></span>
+<span id="cb5-83"><a href="#cb5-83" tabindex="-1"></a><span class="co">#&gt;     INV12             0.385    0.063    6.081    0.000    0.385    0.415</span></span>
+<span id="cb5-84"><a href="#cb5-84" tabindex="-1"></a><span class="co">#&gt;     INV3              0.033    0.055    0.587    0.557    0.033    0.035</span></span>
+<span id="cb5-85"><a href="#cb5-85" tabindex="-1"></a><span class="co">#&gt;     INV6              0.183    0.067    2.710    0.007    0.183    0.187</span></span>
+<span id="cb5-86"><a href="#cb5-86" tabindex="-1"></a><span class="co">#&gt;     INV8              0.087    0.052    1.666    0.096    0.087    0.092</span></span>
+<span id="cb5-87"><a href="#cb5-87" tabindex="-1"></a><span class="co">#&gt;     INV9              0.091    0.056    1.629    0.103    0.091    0.093</span></span>
+<span id="cb5-88"><a href="#cb5-88" tabindex="-1"></a><span class="co">#&gt;     INV13            -0.110    0.051   -2.139    0.032   -0.110   -0.106</span></span>
+<span id="cb5-89"><a href="#cb5-89" tabindex="-1"></a><span class="co">#&gt;     INV14            -0.101    0.064   -1.570    0.117   -0.101   -0.090</span></span>
+<span id="cb5-90"><a href="#cb5-90" tabindex="-1"></a><span class="co">#&gt;   f2 =~ efa1                                                            </span></span>
+<span id="cb5-91"><a href="#cb5-91" tabindex="-1"></a><span class="co">#&gt;     INV1             -0.037    0.062   -0.592    0.554   -0.037   -0.037</span></span>
+<span id="cb5-92"><a href="#cb5-92" tabindex="-1"></a><span class="co">#&gt;     INV4             -0.108    0.052   -2.088    0.037   -0.108   -0.110</span></span>
+<span id="cb5-93"><a href="#cb5-93" tabindex="-1"></a><span class="co">#&gt;     INV5             -0.036    0.058   -0.621    0.535   -0.036   -0.042</span></span>
+<span id="cb5-94"><a href="#cb5-94" tabindex="-1"></a><span class="co">#&gt;     INV7              0.002    0.052    0.048    0.962    0.002    0.003</span></span>
+<span id="cb5-95"><a href="#cb5-95" tabindex="-1"></a><span class="co">#&gt;     INV11             0.050    0.055    0.901    0.368    0.050    0.056</span></span>
+<span id="cb5-96"><a href="#cb5-96" tabindex="-1"></a><span class="co">#&gt;     INV12             0.289    0.053    5.418    0.000    0.289    0.311</span></span>
+<span id="cb5-97"><a href="#cb5-97" tabindex="-1"></a><span class="co">#&gt;     INV3              0.405    0.056    7.171    0.000    0.405    0.438</span></span>
+<span id="cb5-98"><a href="#cb5-98" tabindex="-1"></a><span class="co">#&gt;     INV6              0.295    0.063    4.696    0.000    0.295    0.302</span></span>
+<span id="cb5-99"><a href="#cb5-99" tabindex="-1"></a><span class="co">#&gt;     INV8              0.573    0.062    9.249    0.000    0.573    0.606</span></span>
+<span id="cb5-100"><a href="#cb5-100" tabindex="-1"></a><span class="co">#&gt;     INV9              0.590    0.061    9.630    0.000    0.590    0.604</span></span>
+<span id="cb5-101"><a href="#cb5-101" tabindex="-1"></a><span class="co">#&gt;     INV13             0.765    0.056   13.728    0.000    0.765    0.737</span></span>
+<span id="cb5-102"><a href="#cb5-102" tabindex="-1"></a><span class="co">#&gt;     INV14             0.473    0.072    6.618    0.000    0.473    0.421</span></span>
+<span id="cb5-103"><a href="#cb5-103" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-104"><a href="#cb5-104" tabindex="-1"></a><span class="co">#&gt; Covariances:</span></span>
+<span id="cb5-105"><a href="#cb5-105" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
+<span id="cb5-106"><a href="#cb5-106" tabindex="-1"></a><span class="co">#&gt;   f1 ~~                                                                 </span></span>
+<span id="cb5-107"><a href="#cb5-107" tabindex="-1"></a><span class="co">#&gt;     f2                0.595    0.051   11.763    0.000    0.595    0.595</span></span>
+<span id="cb5-108"><a href="#cb5-108" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-109"><a href="#cb5-109" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
+<span id="cb5-110"><a href="#cb5-110" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all</span></span>
+<span id="cb5-111"><a href="#cb5-111" tabindex="-1"></a><span class="co">#&gt;    .INV1              0.595    0.054   10.964    0.000    0.595    0.602</span></span>
+<span id="cb5-112"><a href="#cb5-112" tabindex="-1"></a><span class="co">#&gt;    .INV4              0.623    0.056   11.060    0.000    0.623    0.647</span></span>
+<span id="cb5-113"><a href="#cb5-113" tabindex="-1"></a><span class="co">#&gt;    .INV5              0.491    0.053    9.318    0.000    0.491    0.651</span></span>
+<span id="cb5-114"><a href="#cb5-114" tabindex="-1"></a><span class="co">#&gt;    .INV7              0.499    0.046   10.747    0.000    0.499    0.535</span></span>
+<span id="cb5-115"><a href="#cb5-115" tabindex="-1"></a><span class="co">#&gt;    .INV11             0.468    0.042   11.146    0.000    0.468    0.605</span></span>
+<span id="cb5-116"><a href="#cb5-116" tabindex="-1"></a><span class="co">#&gt;    .INV12             0.497    0.040   12.481    0.000    0.497    0.577</span></span>
+<span id="cb5-117"><a href="#cb5-117" tabindex="-1"></a><span class="co">#&gt;    .INV3              0.674    0.053   12.759    0.000    0.674    0.789</span></span>
+<span id="cb5-118"><a href="#cb5-118" tabindex="-1"></a><span class="co">#&gt;    .INV6              0.765    0.058   13.197    0.000    0.765    0.806</span></span>
+<span id="cb5-119"><a href="#cb5-119" tabindex="-1"></a><span class="co">#&gt;    .INV8              0.498    0.047   10.699    0.000    0.498    0.557</span></span>
+<span id="cb5-120"><a href="#cb5-120" tabindex="-1"></a><span class="co">#&gt;    .INV9              0.533    0.042   12.846    0.000    0.533    0.559</span></span>
+<span id="cb5-121"><a href="#cb5-121" tabindex="-1"></a><span class="co">#&gt;    .INV13             0.580    0.058    9.990    0.000    0.580    0.538</span></span>
+<span id="cb5-122"><a href="#cb5-122" tabindex="-1"></a><span class="co">#&gt;    .INV14             1.088    0.072   15.061    0.000    1.088    0.860</span></span>
+<span id="cb5-123"><a href="#cb5-123" tabindex="-1"></a><span class="co">#&gt;     f1                1.000                               1.000    1.000</span></span>
+<span id="cb5-124"><a href="#cb5-124" tabindex="-1"></a><span class="co">#&gt;     f2                1.000                               1.000    1.000</span></span></code></pre></div>
 </div>
 <div id="compute-factor-complexity-indices" class="section level2">
 <h2>5. Compute factor complexity indices</h2>
@@ -558,19 +568,19 @@ of the items in their expected factors.</p>
 <div id="hofmanns-index" class="section level3">
 <h3>Hofmann’s Index</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">Hofmann</span>(<span class="at">data =</span> <span class="fu">lavInspect</span>(INV.esem.fit, <span class="at">what =</span> <span class="st">&quot;std&quot;</span>)<span class="sc">$</span>lambda)</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;        CHof CHof_R</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; INV1  1.006  0.994</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; INV4  1.057  0.946</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; INV5  1.009  0.991</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; INV7  1.000  1.000</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; INV11 1.018  0.982</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; INV12 1.853  0.540</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; INV3  1.013  0.987</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; INV6  1.670  0.599</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; INV8  1.046  0.956</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; INV9  1.047  0.955</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; INV13 1.041  0.960</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; INV14 1.091  0.916</span></span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;        CHof</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; INV1  1.006</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; INV4  1.057</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; INV5  1.009</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; INV7  1.000</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; INV11 1.018</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; INV12 1.853</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; INV3  1.013</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; INV6  1.670</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; INV8  1.046</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; INV9  1.047</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; INV13 1.041</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; INV14 1.091</span></span></code></pre></div>
 </div>
 <div id="bentlers-simplicity-index-bsi" class="section level3">
 <h3>Bentler’s Simplicity Index (BSI)</h3>

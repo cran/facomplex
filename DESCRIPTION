@@ -1,7 +1,7 @@
 Package: facomplex
-Title: Methods for Assessing Factor Complexity in Factor Analysis
-        Solutions
-Version: 0.0.3
+Title: Methods for Assessing Factor Complexity and Simplicity in Factor
+        Analysis Solutions
+Version: 1.0.0
 Authors@R: c(
   person("Merino-Soto", "Cesar A.", 
          email = "sikayax@yahoo.com.ar", 
@@ -20,9 +20,9 @@ VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2026-07-11 16:16:23 UTC; C NINJA
+Packaged: 2026-07-31 17:26:45 UTC; C NINJA
 Author: Merino-Soto Cesar A. [aut, cre],
   Dominguez-Lara Sergio [ctb]
 Maintainer: Merino-Soto Cesar A. <sikayax@yahoo.com.ar>
 Repository: CRAN
-Date/Publication: 2026-07-21 10:00:02 UTC
+Date/Publication: 2026-07-31 18:40:02 UTC
